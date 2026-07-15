@@ -1,58 +1,120 @@
 const { Market } = require("../models");
 
 
-exports.createMarket = async (req, res) => {
+const createMarket = async (req, res) => {
   try {
-    const market = await Market.create(req.body);
-    res.status(201).json(market);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    const { name, city, region } = req.body;
+
+    if (!name || !city || !region) {
+      return res.status(400).json({
+        message: "Name, city and region are required",
+      });
+    }
+
+    const market = await Market.create({
+      name,
+      city,
+      region,
+    });
+
+    return res.status(201).json(market);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
 
-exports.getAllMarkets = async (req, res) => {
+const getAllMarkets = async (req, res) => {
   try {
     const markets = await Market.findAll();
-    res.json(markets);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+
+    return res.status(200).json(markets);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
 
-exports.getMarketById = async (req, res) => {
+const getMarketById = async (req, res) => {
   try {
-    const market = await Market.findByPk(req.params.id);
-    if (!market) return res.status(404).json({ error: "Market not found" });
-    res.json(market);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const { id } = req.params;
+
+    const market = await Market.findByPk(id);
+
+    if (!market) {
+      return res.status(404).json({
+        message: "Market not found",
+      });
+    }
+
+    return res.status(200).json(market);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
 
-exports.updateMarket = async (req, res) => {
+const updateMarket = async (req, res) => {
   try {
-    const market = await Market.findByPk(req.params.id);
-    if (!market) return res.status(404).json({ error: "Market not found" });
+    const { id } = req.params;
+    const { name, city, region } = req.body;
 
-    await market.update(req.body);
-    res.json(market);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    const market = await Market.findByPk(id);
+
+    if (!market) {
+      return res.status(404).json({
+        message: "Market not found",
+      });
+    }
+
+    await market.update({
+      name,
+      city,
+      region,
+    });
+
+    return res.status(200).json(market);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
-
-exports.deleteMarket = async (req, res) => {
+const deleteMarket = async (req, res) => {
   try {
-    const market = await Market.findByPk(req.params.id);
-    if (!market) return res.status(404).json({ error: "Market not found" });
+    const { id } = req.params;
+
+    const market = await Market.findByPk(id);
+
+    if (!market) {
+      return res.status(404).json({
+        message: "Market not found",
+      });
+    }
 
     await market.destroy();
-    res.json({ message: "Market deleted" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+
+    return res.status(200).json({
+      message: "Market deleted successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
   }
+};
+
+module.exports = {
+  createMarket,
+  getAllMarkets,
+  getMarketById,
+  updateMarket,
+  deleteMarket,
 };

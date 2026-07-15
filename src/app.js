@@ -13,6 +13,7 @@ const authRoutes = require("./routes/auth.routes");
 
 const loggerMiddleware = require("./middlewares/logger.middleware");
 const errorHandler = require("./middlewares/error.middleware");
+const saleOfferRoutes = require("./routes/saleOffer.routes");
 
 app.use(express.json());
 
@@ -27,6 +28,7 @@ app.use("/api/harvests", harvestRoutes);
 app.use("/api/markets", marketRoutes);
 app.use("/api/market-prices", marketPriceRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/sale-offers", saleOfferRoutes);
 
 app.use(errorHandler);
 

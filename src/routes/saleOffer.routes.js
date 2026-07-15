@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require("../controllers/marketPrice.controller");
+const saleOfferController = require("../controllers/saleOffer.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 const rbacMiddleware = require("../middlewares/rbac.middleware");
 
@@ -9,33 +9,33 @@ router.post(
   "/",
   authMiddleware,
   rbacMiddleware("ADMIN"),
-  controller.createMarketPrice
+  saleOfferController.createSaleOffer
 );
 
 router.get(
   "/",
   authMiddleware,
-  controller.getAllMarketPrices
+  saleOfferController.getAllSaleOffers
 );
 
 router.get(
   "/:id",
   authMiddleware,
-  controller.getMarketPriceById
+  saleOfferController.getSaleOfferById
 );
 
 router.put(
   "/:id",
   authMiddleware,
   rbacMiddleware("ADMIN"),
-  controller.updateMarketPrice
+  saleOfferController.updateSaleOffer
 );
 
 router.delete(
   "/:id",
   authMiddleware,
   rbacMiddleware("ADMIN"),
-  controller.deleteMarketPrice
+  saleOfferController.deleteSaleOffer
 );
 
 module.exports = router;

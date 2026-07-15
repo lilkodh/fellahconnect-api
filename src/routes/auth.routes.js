@@ -6,7 +6,7 @@ const validateRequiredFields = require("../middlewares/validation.middleware");
 
 const router = express.Router();
 
-// Register
+
 router.post(
   "/register",
   validateRequiredFields([
@@ -18,7 +18,7 @@ router.post(
   authController.register
 );
 
-// Login
+
 router.post(
   "/login",
   validateRequiredFields([
@@ -27,8 +27,6 @@ router.post(
   ]),
   authController.login
 );
-
-// Protected Route - JWT Test
 router.get(
   "/profile",
   authMiddleware,
@@ -41,7 +39,7 @@ router.get(
   }
 );
 
-// Protected Route - RBAC Test (ADMIN only)
+
 router.get(
   "/admin-test",
   authMiddleware,

@@ -3,56 +3,111 @@ const { MarketPrice } = require("../models");
 
 exports.createMarketPrice = async (req, res) => {
   try {
-    const data = await MarketPrice.create(req.body);
-    res.status(201).json(data);
+
+    const { marketId, productId, price, date } = req.body;
+
+    if (!marketId || !productId || !price || !date) {
+      return res.status(400).json({
+        message: "marketId, productId, price and date are required"
+      });
+    }
+
+    const data = await MarketPrice.create({
+      marketId,
+      productId,
+      price,
+      date
+    });
+
+    return res.status(201).json(data);
+
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    return res.status(400).json({
+      error: err.message
+    });
   }
 };
 
 
 exports.getAllMarketPrices = async (req, res) => {
   try {
+
     const data = await MarketPrice.findAll();
-    res.json(data);
+
+    return res.status(200).json(data);
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({
+      error: err.message
+    });
   }
 };
 
 
 exports.getMarketPriceById = async (req, res) => {
   try {
+
     const data = await MarketPrice.findByPk(req.params.id);
-    if (!data) return res.status(404).json({ error: "Not found" });
-    res.json(data);
+
+    if (!data) {
+      return res.status(404).json({
+        error: "Market price not found"
+      });
+    }
+
+    return res.status(200).json(data);
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({
+      error: err.message
+    });
   }
 };
 
 
 exports.updateMarketPrice = async (req, res) => {
   try {
+
     const data = await MarketPrice.findByPk(req.params.id);
-    if (!data) return res.status(404).json({ error: "Not found" });
+
+    if (!data) {
+      return res.status(404).json({
+        error: "Market price not found"
+      });
+    }
 
     await data.update(req.body);
-    res.json(data);
+
+    return res.status(200).json(data);
+
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    return res.status(400).json({
+      error: err.message
+    });
   }
 };
 
 
 exports.deleteMarketPrice = async (req, res) => {
   try {
+
     const data = await MarketPrice.findByPk(req.params.id);
-    if (!data) return res.status(404).json({ error: "Not found" });
+
+    if (!data) {
+      return res.status(404).json({
+        error: "Market price not found"
+      });
+    }
 
     await data.destroy();
-    res.json({ message: "Deleted" });
+
+    return res.status(200).json({
+      message: "Market price deleted successfully"
+    });
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({
+      error: err.message
+    });
   }
 };

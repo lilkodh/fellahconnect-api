@@ -10,7 +10,7 @@ GET {{baseUrl}}/api/farmers
 ###
 
 ### Get farmer by id
-GET {{baseUrl}}/api/farmers/1
+GET {{baseUrl}}/api/farmers/8
 
 ###
 
@@ -19,7 +19,7 @@ POST {{baseUrl}}/api/farmers
 Content-Type: application/json
 
 {
-  "userId": 3,
+  "userId": 1,
   "firstName": "Ahmed",
   "lastName": "Benali",
   "address": "Agadir",
@@ -30,11 +30,11 @@ Content-Type: application/json
 ###
 
 ### Update farmer
-PUT {{baseUrl}}/api/farmers/1
+PUT {{baseUrl}}/api/farmers/7
 Content-Type: application/json
 
 {
-  "fullName": "Ahmed Updated",
+  
   "phone": "0611111111",
   "region": "Souss-Massa"
 }
@@ -42,7 +42,7 @@ Content-Type: application/json
 ###
 
 ### Delete farmer
-DELETE {{baseUrl}}/api/farmers/1
+DELETE {{baseUrl}}/api/farmers/8
 
 ##################################################
 # PARCELS
@@ -62,7 +62,7 @@ POST {{baseUrl}}/api/parcels
 Content-Type: application/json
 
 {
-  "farmerId": 1,
+  "farmerId": 7,
   "name": "Parcel A",
   "area": 2.5,
   "location": "Agadir"
@@ -70,7 +70,7 @@ Content-Type: application/json
 
 ###
 
-PUT {{baseUrl}}/api/parcels/1
+PUT {{baseUrl}}/api/parcels/7
 Content-Type: application/json
 
 {
@@ -80,7 +80,7 @@ Content-Type: application/json
 
 ###
 
-DELETE {{baseUrl}}/api/parcels/1
+DELETE {{baseUrl}}/api/parcels/7
 
 ##################################################
 # HARVESTS
@@ -100,15 +100,16 @@ POST {{baseUrl}}/api/harvests
 Content-Type: application/json
 
 {
-  "parcelId": 1,
-  "productId": 1,
+  "parcelId":8 ,
+  "productId": 3,
   "quantity": 500,
+  "status" : "SOLD",
   "harvestDate": "2026-07-15"
 }
 
 ###
 
-PUT {{baseUrl}}/api/harvests/1
+PUT {{baseUrl}}/api/harvests/7
 Content-Type: application/json
 
 {
@@ -199,7 +200,7 @@ GET {{baseUrl}}/api/market-prices
 
 ###
 
-GET {{baseUrl}}/api/market-prices/1
+GET {{baseUrl}}/api/parcels
 
 ###
 
@@ -224,4 +225,79 @@ Content-Type: application/json
 
 ###
 
-DELETE {{baseUrl}}/api/market-prices/1
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "Ahmed Benali",
+  "email": "ahmed@test.com",
+  "password": "Password123!",
+  "role": "FARMER"
+}
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ahmed@test.com",
+  "password": "Password123!"
+}
+###
+PUT http://localhost:3000/api/farmers/8
+Content-Type: application/json
+
+{
+  "address": "Marrakech"
+}
+###
+POST http://localhost:3000/api/parcels
+Content-Type: application/json
+
+{
+  "farmerId": 8,
+  "name": "Parcel A",
+  "area": 2.5,
+  "location": "Agadir"
+}
+###
+POST http://localhost:3000/api/harvests
+Content-Type: application/json
+
+{
+  "parcelId":3,
+  "productId": 2,
+  "quantity": 500,
+  "harvestDate": "2026-07-15",
+  "status": "SOLD"
+}
+###
+GET http://localhost:3000/api/products
+###
+GET http://localhost:3000/api/sale-offers
+###
+DELETE http://localhost:3000/api/harvests/6
+###
+http://localhost:3000/api/markets
+###
+POST http://localhost:3000/api/markets
+Content-Type: application/json
+
+{
+  "name": "Souk Agadir",
+  "city": "Agadir",
+  "region":"benimella"
+}
+
+###
+PUT http://localhost:3000/api/markets/1
+Content-Type: application/json
+
+{
+  "name":"Grand Souk Agadir",
+  "city":"Agadir",
+  "region":"Souss-Massa"
+}
+###
+
+DELETE http://localhost:3000/api/markets/1
+/api/sale-offers

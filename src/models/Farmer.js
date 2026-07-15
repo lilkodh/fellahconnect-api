@@ -41,11 +41,6 @@ const Farmer = sequelize.define(
   }
 );
 
-Farmer.associate = (models) => {
-  Farmer.hasMany(models.Parcel, {
-    foreignKey: "farmerId",
-    as: "parcels",
-  });
-};
+
 
 module.exports = Farmer;

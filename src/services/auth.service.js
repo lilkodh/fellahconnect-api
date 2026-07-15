@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
-// Register
 async function register(userData) {
   const existingUser = await User.findOne({
     where: {
@@ -26,7 +25,6 @@ async function register(userData) {
   return user;
 }
 
-// Login
 async function login(userData) {
   const user = await User.findOne({
     where: {

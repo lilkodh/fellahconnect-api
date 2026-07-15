@@ -36,16 +36,7 @@ const Parcel = sequelize.define(
   }
 );
 
-Parcel.associate = (models) => {
-  Parcel.belongsTo(models.Farmer, {
-    foreignKey: "farmerId",
-    as: "farmer",
-  });
 
-  Parcel.hasMany(models.Harvest, {
-    foreignKey: "parcelId",
-    as: "harvests",
-  });
-};
+
 
 module.exports = Parcel;

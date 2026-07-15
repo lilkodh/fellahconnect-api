@@ -41,16 +41,6 @@ const Harvest = sequelize.define(
   }
 );
 
-Harvest.associate = (models) => {
-  Harvest.belongsTo(models.Parcel, {
-    foreignKey: "parcelId",
-    as: "parcel",
-  });
 
-  Harvest.belongsTo(models.Product, {
-    foreignKey: "productId",
-    as: "product",
-  });
-};
 
 module.exports = Harvest;

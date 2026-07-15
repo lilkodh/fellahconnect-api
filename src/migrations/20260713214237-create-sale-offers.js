@@ -46,6 +46,7 @@ module.exports = {
   status: {
     type: Sequelize.ENUM("PENDING","ACCEPTED","REJECTED","SOLD"),
     allowNull: false,
+  defaultValue: "PENDING",
   },
 
   createdAt: {
@@ -62,12 +63,10 @@ module.exports = {
 });
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-  }
+ async down(queryInterface, Sequelize) {
+  await queryInterface.dropTable("sale_offers");
+  await queryInterface.sequelize.query(
+    'DROP TYPE IF EXISTS "enum_sale_offers_status";'
+  );
+}
 };
