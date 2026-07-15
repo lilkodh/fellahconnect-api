@@ -1,0 +1,227 @@
+@baseUrl = http://localhost:3000
+
+##################################################
+# FARMERS
+##################################################
+
+### Get all farmers
+GET {{baseUrl}}/api/farmers
+
+###
+
+### Get farmer by id
+GET {{baseUrl}}/api/farmers/1
+
+###
+
+### Create farmer
+POST {{baseUrl}}/api/farmers
+Content-Type: application/json
+
+{
+  "userId": 3,
+  "firstName": "Ahmed",
+  "lastName": "Benali",
+  "address": "Agadir",
+  "phone": "0612345678",
+  "region": "Souss-Massa"
+}
+
+###
+
+### Update farmer
+PUT {{baseUrl}}/api/farmers/1
+Content-Type: application/json
+
+{
+  "fullName": "Ahmed Updated",
+  "phone": "0611111111",
+  "region": "Souss-Massa"
+}
+
+###
+
+### Delete farmer
+DELETE {{baseUrl}}/api/farmers/1
+
+##################################################
+# PARCELS
+##################################################
+
+###
+
+GET {{baseUrl}}/api/parcels
+
+###
+
+GET {{baseUrl}}/api/parcels/1
+
+###
+
+POST {{baseUrl}}/api/parcels
+Content-Type: application/json
+
+{
+  "farmerId": 1,
+  "name": "Parcel A",
+  "area": 2.5,
+  "location": "Agadir"
+}
+
+###
+
+PUT {{baseUrl}}/api/parcels/1
+Content-Type: application/json
+
+{
+  "name": "Parcel Updated",
+  "area": 3
+}
+
+###
+
+DELETE {{baseUrl}}/api/parcels/1
+
+##################################################
+# HARVESTS
+##################################################
+
+###
+
+GET {{baseUrl}}/api/harvests
+
+###
+
+GET {{baseUrl}}/api/harvests/1
+
+###
+
+POST {{baseUrl}}/api/harvests
+Content-Type: application/json
+
+{
+  "parcelId": 1,
+  "productId": 1,
+  "quantity": 500,
+  "harvestDate": "2026-07-15"
+}
+
+###
+
+PUT {{baseUrl}}/api/harvests/1
+Content-Type: application/json
+
+{
+  "quantity": 650
+}
+
+###
+
+DELETE {{baseUrl}}/api/harvests/1
+
+##################################################
+# PRODUCTS
+##################################################
+
+###
+
+GET {{baseUrl}}/api/products
+
+###
+
+GET {{baseUrl}}/api/products/1
+
+###
+
+POST {{baseUrl}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Tomato",
+  "category": "Vegetable"
+}
+
+###
+
+PUT {{baseUrl}}/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Tomato Premium"
+}
+
+###
+
+DELETE {{baseUrl}}/api/products/1
+
+##################################################
+# MARKETS
+##################################################
+
+###
+
+GET {{baseUrl}}/api/markets
+
+###
+
+GET {{baseUrl}}/api/markets/1
+
+###
+
+POST {{baseUrl}}/api/markets
+Content-Type: application/json
+
+{
+  "name": "Souk Agadir",
+  "city": "Agadir"
+}
+
+###
+
+PUT {{baseUrl}}/api/markets/1
+Content-Type: application/json
+
+{
+  "name": "Grand Souk Agadir"
+}
+
+###
+
+DELETE {{baseUrl}}/api/markets/1
+
+##################################################
+# MARKET PRICES
+##################################################
+
+###
+
+GET {{baseUrl}}/api/market-prices
+
+###
+
+GET {{baseUrl}}/api/market-prices/1
+
+###
+
+POST {{baseUrl}}/api/market-prices
+Content-Type: application/json
+
+{
+  "marketId": 1,
+  "productId": 1,
+  "price": 6.5,
+  "date": "2026-07-15"
+}
+
+###
+
+PUT {{baseUrl}}/api/market-prices/1
+Content-Type: application/json
+
+{
+  "price": 7
+}
+
+###
+
+DELETE {{baseUrl}}/api/market-prices/1
