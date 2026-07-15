@@ -1,5 +1,5 @@
 const Farmer = require("../models/Farmer");
-
+const Parcel = require("../models/Parcel");
 exports.createFarmer = async (req, res) => {
   try {
     const farmer = await Farmer.create(req.body);
@@ -8,7 +8,6 @@ exports.createFarmer = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
 exports.getAllFarmers = async (req, res) => {
   try {
     const farmers = await Farmer.findAll();
@@ -63,5 +62,30 @@ exports.deleteFarmer = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getFarmerParcels = async (req, res) => {
+  try {
+    const farmer = await Farmer.findByPk(req.params.id, {
+      include: [
+        {
+          model: Parcel,
+          as: "parcels",
+        },
+      ],
+    });
+
+    if (!farmer) {
+      return res.status(404).json({
+        message: "Farmer not found",
+      });
+    }
+
+    return res.status(200).json(farmer);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
   }
 };

@@ -7,6 +7,8 @@ router.post("/", farmerController.createFarmer);
 
 router.get("/", farmerController.getAllFarmers);
 
+router.get("/:id/parcels", farmerController.getFarmerParcels);
+
 router.get("/:id", farmerController.getFarmerById);
 
 router.put("/:id", farmerController.updateFarmer);

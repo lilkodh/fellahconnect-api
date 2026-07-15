@@ -1,4 +1,6 @@
 const Harvest = require("../models/Harvest");
+const Parcel = require("../models/Parcel");
+const Product = require("../models/Product");
 
 exports.createHarvest = async (req, res) => {
   try {
@@ -17,7 +19,6 @@ exports.getAllHarvests = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
 exports.getHarvestById = async (req, res) => {
   try {
     const harvest = await Harvest.findByPk(req.params.id);
@@ -33,6 +34,7 @@ exports.getHarvestById = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
 
 exports.updateHarvest = async (req, res) => {
   try {
@@ -52,6 +54,7 @@ exports.updateHarvest = async (req, res) => {
   }
 };
 
+
 exports.deleteHarvest = async (req, res) => {
   try {
     const harvest = await Harvest.findByPk(req.params.id);
@@ -69,5 +72,34 @@ exports.deleteHarvest = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getHarvestDetails = async (req, res) => {
+  try {
+    const harvest = await Harvest.findByPk(req.params.id, {
+      include: [
+        {
+          model: Parcel,
+          as: "parcel",
+        },
+        {
+          model: Product,
+          as: "product",
+        },
+      ],
+    });
+
+    if (!harvest) {
+      return res.status(404).json({
+        message: "Harvest not found",
+      });
+    }
+
+    return res.status(200).json(harvest);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
   }
 };
