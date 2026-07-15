@@ -8,6 +8,4 @@ app.use("/api/farmers", farmerRoutes);
 app.use("/api/parcels", parcelRoutes);
 app.use("/api/harvests", harvestRoutes);
 
-
-
-module.exports = app ;
+module.exports = app;
