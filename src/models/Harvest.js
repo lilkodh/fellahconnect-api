@@ -6,8 +6,8 @@ const Harvest = sequelize.define(
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
       autoIncrement: true,
+      primaryKey: true,
     },
 
     parcelId: {
@@ -40,5 +40,17 @@ const Harvest = sequelize.define(
     timestamps: true,
   }
 );
+
+Harvest.associate = (models) => {
+  Harvest.belongsTo(models.Parcel, {
+    foreignKey: "parcelId",
+    as: "parcel",
+  });
+
+  Harvest.belongsTo(models.Product, {
+    foreignKey: "productId",
+    as: "product",
+  });
+};
 
 module.exports = Harvest;

@@ -6,8 +6,8 @@ const Parcel = sequelize.define(
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
       autoIncrement: true,
+      primaryKey: true,
     },
 
     farmerId: {
@@ -35,5 +35,17 @@ const Parcel = sequelize.define(
     timestamps: true,
   }
 );
+
+Parcel.associate = (models) => {
+  Parcel.belongsTo(models.Farmer, {
+    foreignKey: "farmerId",
+    as: "farmer",
+  });
+
+  Parcel.hasMany(models.Harvest, {
+    foreignKey: "parcelId",
+    as: "harvests",
+  });
+};
 
 module.exports = Parcel;

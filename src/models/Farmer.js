@@ -9,24 +9,29 @@ const Farmer = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
+
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+
     firstName: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
+
     lastName: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
+
     phone: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
+
     address: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
   },
@@ -35,5 +40,12 @@ const Farmer = sequelize.define(
     timestamps: true,
   }
 );
+
+Farmer.associate = (models) => {
+  Farmer.hasMany(models.Parcel, {
+    foreignKey: "farmerId",
+    as: "parcels",
+  });
+};
 
 module.exports = Farmer;
