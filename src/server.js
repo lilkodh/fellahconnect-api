@@ -1,3 +1,4 @@
+const authRoutes = require("./routes/auth.routes");
 require("dotenv").config();
 
 const app = require("./app");
