@@ -1,5 +1,18 @@
-db.Product.hasMany(db.MarketPrice, { foreignKey: "productId" });
-db.MarketPrice.belongsTo(db.Product, { foreignKey: "productId" });
+Market.hasMany(MarketPrice,{
+ foreignKey:"marketId"
+});
 
-db.Market.hasMany(db.MarketPrice, { foreignKey: "marketId" });
-db.MarketPrice.belongsTo(db.Market, { foreignKey: "marketId" });
+
+MarketPrice.belongsTo(Market,{
+ foreignKey:"marketId"
+});
+
+
+Product.hasMany(MarketPrice,{
+ foreignKey:"productId"
+});
+
+
+MarketPrice.belongsTo(Product,{
+ foreignKey:"productId"
+});
