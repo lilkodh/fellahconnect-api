@@ -1,3 +1,4 @@
+const Aiservice = require("../services/ai.service")
 class aiController {
     chat = async (req, res) =>{ 
         const {message} = await req.body ;
