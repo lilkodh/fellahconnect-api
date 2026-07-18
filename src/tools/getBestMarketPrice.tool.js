@@ -1,14 +1,28 @@
+const { Product, MarketPrice, Market } = require("../models");
+
 class GetBestMarketPriceTool {
 
-    execute = async (product) => {
+  execute = async (product) => {
 
-        return {
-            market: "Casablanca",
-            product,
-            price: 14.5
-        };
+    const productFound = await Product.findOne({
+      where: {
+        name: product
+      }
+    });
 
+    if (!productFound) {
+      return {
+        success: false,
+        message: "Product not found."
+      };
+    }
+
+    return {
+      success: true,
+      product: productFound
     };
+
+  };
 
 }
 
