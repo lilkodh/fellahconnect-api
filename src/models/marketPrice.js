@@ -18,25 +18,21 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
 
-      price: {
+      pricePerKg: {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
 
-      date: {
-        type: DataTypes.DATEONLY,
+      recordedAt: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
     },
     {
       tableName: "market_prices",
       timestamps: true,
-    }
+    },
   );
-
-
-
-
 
   return MarketPrice;
 };
