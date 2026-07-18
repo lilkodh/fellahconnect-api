@@ -1,3 +1,313 @@
+@baseUrl = http://localhost:3000
+
+##################################################
+# FARMERS
+##################################################
+
+### Get all farmers
+GET {{baseUrl}}/api/farmers
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkZBUk1FUiIsImlhdCI6MTc4NDE0OTEwOCwiZXhwIjoxNzg0MjM1NTA4fQ.7n1ljhGlMEqWs8gyRVtebe1y246cxUfbvHAvbw-AV2M
+
+
+###
+
+### Get farmer by id
+GET {{baseUrl}}/api/farmers/8
+C
+
+###
+
+### Create farmer
+POST {{baseUrl}}/api/farmers
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "firstName": "Ahmed",
+  "lastName": "Benali",
+  "address": "Agadir",
+  "phone": "0612345678",
+  "region": "Souss-Massa"
+}
+
+###
+
+### Update farmer
+PUT {{baseUrl}}/api/farmers/7
+Content-Type: application/json
+
+{
+  
+  "phone": "0611111111",
+  "region": "Souss-Massa"
+}
+
+###
+
+### Delete farmer
+DELETE {{baseUrl}}/api/farmers/8
+
+##################################################
+# PARCELS
+##################################################
+
+###
+
+GET {{baseUrl}}/api/parcels
+
+###
+
+GET {{baseUrl}}/api/parcels/1
+
+###
+
+POST {{baseUrl}}/api/parcels
+Content-Type: application/json
+
+{
+  "farmerId": 7,
+  "name": "Parcel A",
+  "area": 2.5,
+  "location": "Agadir"
+}
+
+###
+
+PUT {{baseUrl}}/api/parcels/7
+Content-Type: application/json
+
+{
+  "name": "Parcel Updated",
+  "area": 3
+}
+
+###
+
+DELETE {{baseUrl}}/api/parcels/7
+
+##################################################
+# HARVESTS
+##################################################
+
+###
+
+GET {{baseUrl}}/api/harvests
+
+###
+
+GET {{baseUrl}}/api/harvests/1
+
+###
+
+POST {{baseUrl}}/api/harvests
+Content-Type: application/json
+
+{
+  "parcelId":8 ,
+  "productId": 3,
+  "quantity": 500,
+  "status" : "SOLD",
+  "harvestDate": "2026-07-15"
+}
+
+###
+
+PUT {{baseUrl}}/api/harvests/7
+Content-Type: application/json
+
+{
+  "quantity": 650
+}
+
+###
+
+DELETE {{baseUrl}}/api/harvests/1
+
+##################################################
+# PRODUCTS
+##################################################
+
+###
+
+GET {{baseUrl}}/api/products
+
+###
+
+GET {{baseUrl}}/api/products/1
+
+###
+
+POST {{baseUrl}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Tomato",
+  "category": "Vegetable"
+}
+
+###
+
+PUT {{baseUrl}}/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Tomato Premium"
+}
+
+###
+
+DELETE {{baseUrl}}/api/products/1
+
+##################################################
+# MARKETS
+##################################################
+
+###
+
+GET {{baseUrl}}/api/markets
+
+###
+
+GET {{baseUrl}}/api/markets/1
+
+###
+
+POST {{baseUrl}}/api/markets
+Content-Type: application/json
+
+{
+  "name": "Souk Agadir",
+  "city": "Agadir"
+}
+
+###
+
+PUT {{baseUrl}}/api/markets/1
+Content-Type: application/json
+
+{
+  "name": "Grand Souk Agadir"
+}
+
+###
+
+DELETE {{baseUrl}}/api/markets/1
+
+##################################################
+# MARKET PRICES
+##################################################
+
+###
+
+GET {{baseUrl}}/api/market-prices
+Authorization: berarer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkZBUk1FUiIsImlhdCI6MTc4NDE4OTg2OSwiZXhwIjoxNzg0Mjc2MjY5fQ.pumyMcrjCP-lwl422ErswzvJjlGrTE5wU-PhCdwCrsg
+###
+
+GET {{baseUrl}}/api/parcels
+Authorization: berarer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkZBUk1FUiIsImlhdCI6MTc4NDE4OTg2OSwiZXhwIjoxNzg0Mjc2MjY5fQ.pumyMcrjCP-lwl422ErswzvJjlGrTE5wU-PhCdwCrsg
+
+###
+
+POST {{baseUrl}}/api/market-prices
+Content-Type: application/json
+Authorization: berarer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkZBUk1FUiIsImlhdCI6MTc4NDE4OTg2OSwiZXhwIjoxNzg0Mjc2MjY5fQ.pumyMcrjCP-lwl422ErswzvJjlGrTE5wU-PhCdwCrsg
+
+
+{
+  "marketId": 1,
+  "productId": 1,
+  "price": 6.5,
+  "date": "2026-07-15"
+}
+
+###
+
+PUT {{baseUrl}}/api/market-prices/1
+Content-Type: application/json
+
+{
+  "price": 7
+}
+
+###
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "Ahmed Benali",
+  "email": "ahmed@test.com",
+  "password": "Password123!",
+  "role": "FARMER"
+}
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkZBUk1FUiIsImlhdCI6MTc4NDE0OTEwOCwiZXhwIjoxNzg0MjM1NTA4fQ.7n1ljhGlMEqWs8gyRVtebe1y246cxUfbvHAvbw-AV2M
+
+{
+  "email": "ahmed@test.com",
+  "password": "Password123!"
+}
+###
+PUT http://localhost:3000/api/farmers/8
+Content-Type: application/json
+
+{
+  "address": "Marrakech"
+}
+###
+POST http://localhost:3000/api/parcels
+Content-Type: application/json
+
+{
+  "farmerId": 8,
+  "name": "Parcel A",
+  "area": 2.5,
+  "location": "Agadir"
+}
+###
+POST http://localhost:3000/api/harvests
+Content-Type: application/json
+
+{
+  "parcelId":3,
+  "productId": 2,
+  "quantity": 500,
+  "harvestDate": "2026-07-15",
+  "status": "SOLD"
+}
+###
+GET http://localhost:3000/api/products
+###
+GET http://localhost:3000/api/sale-offers
+###
+DELETE http://localhost:3000/api/harvests/6
+###
+http://localhost:3000/api/markets
+###
+POST http://localhost:3000/api/markets
+Content-Type: application/json
+
+{
+  "name": "Souk Agadir",
+  "city": "Agadir",
+  "region":"benimella"
+}
+
+###
+PUT http://localhost:3000/api/markets/1
+Content-Type: application/json
+
+{
+  "name":"Grand Souk Agadir",
+  "city":"Agadir",
+  "region":"Souss-Massa"
+}
+###
+
+DELETE http://localhost:3000/api/markets/1
+/api/sale-offers
 ### AI Chat Test
 
 POST http://localhost:3000/api/ai/chat
@@ -5,4 +315,27 @@ Content-Type: application/json
 
 {
     "message": "khalid is good"
+}
+###
+POST http://localhost:3000/api/ai/chat
+Content-Type: application/json
+
+{
+    "message": "Hello AI"
+}
+###
+POST http://localhost:3000/api/ai/chat
+Content-Type: application/json
+
+{
+    "message": "the weather "
+}
+###
+POST http://localhost:3000/api/ai/chat
+Content-Type: application/json
+
+
+  {
+  "message": "What is the best tomato ?"
+  
 }
