@@ -1,7 +1,7 @@
 const { Product, MarketPrice, Market } = require("../models");
 
 class GetBestMarketPriceTool {
-  execute = async (product) => {
+  execute = async ({product}) => {
     const productFound = await Product.findOne({
       where: {
         name: product,
