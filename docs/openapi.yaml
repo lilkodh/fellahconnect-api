@@ -1,0 +1,45 @@
+openapi: 3.0.3
+
+info:
+  title: FellahConnect API
+  description: >
+    AI-powered agricultural marketplace API for Moroccan farmers.
+    Built with Express.js, PostgreSQL, Sequelize, Groq AI, and Pinecone.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/api
+    description: Local Development
+
+tags:
+  - name: Authentication
+  - name: Farmers
+  - name: Parcels
+  - name: Products
+  - name: Harvests
+  - name: Markets
+  - name: Market Prices
+  - name: Sale Offers
+  - name: AI
+
+components:
+
+  securitySchemes:
+
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas: {}
+
+security:
+  - BearerAuth: []
+
+paths:
+
+  /parcels:
+    $ref: "./parcels.yaml#/paths/~1parcels"
+
+  /parcels/{id}:
+    $ref: "./parcels.yaml#/paths/~1parcels~1{id}"

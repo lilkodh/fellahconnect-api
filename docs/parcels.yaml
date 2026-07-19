@@ -1,0 +1,169 @@
+paths:
+
+  /parcels:
+
+    post:
+      tags:
+        - Parcels
+      summary: Create a new parcel
+      security:
+        - BearerAuth: []
+
+      description: Create a parcel (ADMIN only)
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - farmerId
+                - name
+                - area
+                - location
+              properties:
+                farmerId:
+                  type: integer
+                  example: 1
+
+                name:
+                  type: string
+                  example: "Tomato Field"
+
+                area:
+                  type: number
+                  example: 2.5
+
+                location:
+                  type: string
+                  example: "Souss-Massa"
+
+      responses:
+
+        "201":
+          description: Parcel created successfully
+
+        "401":
+          description: Unauthorized
+
+        "403":
+          description: Forbidden - Admin role required
+
+
+    get:
+
+      tags:
+        - Parcels
+
+      summary: Get all parcels
+
+      security:
+        - BearerAuth: []
+
+      responses:
+
+        "200":
+          description: List of parcels
+
+
+  /parcels/{id}:
+
+    get:
+
+      tags:
+        - Parcels
+
+      summary: Get parcel by ID
+
+      security:
+        - BearerAuth: []
+
+      parameters:
+
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+
+      responses:
+
+        "200":
+          description: Parcel found
+
+        "404":
+          description: Parcel not found
+
+
+
+    put:
+
+      tags:
+        - Parcels
+
+      summary: Update parcel
+
+      security:
+        - BearerAuth: []
+
+
+      parameters:
+
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+
+      requestBody:
+
+        required: true
+
+        content:
+
+          application/json:
+
+            schema:
+
+              type: object
+
+
+      responses:
+
+        "200":
+          description: Parcel updated successfully
+
+        "404":
+          description: Parcel not found
+
+
+
+    delete:
+
+      tags:
+        - Parcels
+
+      summary: Delete parcel
+
+      security:
+        - BearerAuth: []
+
+      parameters:
+
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+
+      responses:
+
+        "200":
+          description: Parcel deleted successfully
+
+        "404":
+          description: Parcel not found

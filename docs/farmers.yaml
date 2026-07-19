@@ -1,0 +1,130 @@
+paths:
+
+  /farmers:
+    get:
+      tags:
+        - Farmers
+      summary: Get all farmers
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: List of farmers
+
+    post:
+      tags:
+        - Farmers
+      summary: Create a farmer
+      security:
+        - BearerAuth: []
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+                - firstName
+                - lastName
+                - phone
+                - address
+              properties:
+                userId:
+                  type: integer
+                  example: 1
+
+                firstName:
+                  type: string
+                  example: Ahmed
+
+                lastName:
+                  type: string
+                  example: Benali
+
+                phone:
+                  type: string
+                  example: "0612345678"
+
+                address:
+                  type: string
+                  example: Béni Mellal
+
+      responses:
+        "201":
+          description: Farmer created successfully
+
+        "400":
+          description: Validation error
+
+  /farmers/{id}:
+    get:
+      tags:
+        - Farmers
+      summary: Get a farmer by ID
+      security:
+        - BearerAuth: []
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "200":
+          description: Farmer found
+
+        "404":
+          description: Farmer not found
+
+    put:
+      tags:
+        - Farmers
+      summary: Update a farmer
+      security:
+        - BearerAuth: []
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+
+      responses:
+        "200":
+          description: Farmer updated successfully
+
+        "404":
+          description: Farmer not found
+
+    delete:
+      tags:
+        - Farmers
+      summary: Delete a farmer
+      security:
+        - BearerAuth: []
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "200":
+          description: Farmer deleted successfully
+
+        "404":
+          description: Farmer not found

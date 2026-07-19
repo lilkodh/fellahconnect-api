@@ -15,7 +15,18 @@ const authRoutes = require("./routes/auth.routes");
 const loggerMiddleware = require("./middlewares/logger.middleware");
 const errorHandler = require("./middlewares/error.middleware");
 const saleOfferRoutes = require("./routes/saleOffer.routes");
-const aiRoutes = require("./routes/ai.routes")
+const aiRoutes = require("./routes/ai.routes");
+const { apiReference } = require("@scalar/express-api-reference");
+const YAML = require("yamljs");
+const openapiDocument = YAML.load("./docs/openapi.yaml");
+app.use(
+  "/docs",
+  apiReference({
+    spec: {
+      content: openapiDocument,
+    },
+  })
+);
 
 app.use(express.json());
 
