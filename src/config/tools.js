@@ -61,6 +61,23 @@ const tools = [
       },
     },
   },
+  {
+  type: "function",
+  function: {
+    name: "getFarmerParcels",
+    description: "Returns all parcels belonging to a farmer.",
+    parameters: {
+      type: "object",
+      properties: {
+        farmerId: {
+          type: "integer",
+          description: "The farmer ID",
+        },
+      },
+      required: ["farmerId"],
+    },
+  },
+}
 ];
 
 module.exports = tools;

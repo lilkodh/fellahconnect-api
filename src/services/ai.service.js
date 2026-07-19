@@ -41,8 +41,9 @@ class AIService {
       });
 
       const finalReply = await groqService.generateResponse(messages);
-console.log("FINAL REPLY:");
-console.dir(finalReply, { depth: null });
+console.log(finalReply);
+console.log("Content:", finalReply.content);
+console.log("Tool calls:", finalReply.tool_calls);
       return {
         success: true,
         response: finalReply.content,
