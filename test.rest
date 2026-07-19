@@ -335,5 +335,5 @@ POST http://localhost:3000/api/ai/chat
 Content-Type: application/json
 
 {
-  "message": "What is the best price for tomato?"
+  "message": "Create a sale offer for harvest 1 in market 1 with a price of 15."
 }
