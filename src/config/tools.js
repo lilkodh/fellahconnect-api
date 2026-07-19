@@ -77,6 +77,23 @@ const tools = [
       required: ["farmerId"],
     },
   },
+},
+{
+  type: "function",
+  function: {
+    name: "checkSaleOffer",
+    description: "Returns information about a sale offer.",
+    parameters: {
+      type: "object",
+      properties: {
+        saleOfferId: {
+          type: "integer",
+          description: "The sale offer ID",
+        },
+      },
+      required: ["saleOfferId"],
+    },
+  },
 }
 ];
 
