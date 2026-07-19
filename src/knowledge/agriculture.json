@@ -1,0 +1,37 @@
+[
+  {
+    "id": "tomato-irrigation-001",
+    "category": "irrigation",
+    "crop": "tomato",
+    "region": "Morocco",
+    "text": "Tomatoes need regular irrigation to maintain good production. Drip irrigation is recommended because it reduces water consumption. Water stress can reduce fruit size and quality."
+  },
+  {
+    "id": "olive-irrigation-001",
+    "category": "irrigation",
+    "crop": "olive",
+    "region": "Morocco",
+    "text": "Olive trees are resistant to drought, but young trees require regular watering. Mature olive trees need less frequent irrigation."
+  },
+  {
+    "id": "tomato-disease-001",
+    "category": "disease",
+    "crop": "tomato",
+    "region": "Morocco",
+    "text": "Tomatoes can suffer from fungal diseases. Farmers should monitor leaves, avoid excessive humidity, and use appropriate agricultural treatments."
+  },
+  {
+    "id": "fertilizer-001",
+    "category": "fertilizer",
+    "crop": "general",
+    "region": "Morocco",
+    "text": "Fertilizer selection depends on soil quality and crop requirements. Balanced nutrients such as nitrogen, phosphorus, and potassium help improve production."
+  },
+  {
+    "id": "souss-massa-agriculture-001",
+    "category": "region",
+    "crop": "tomato",
+    "region": "Souss-Massa",
+    "text": "Souss-Massa is one of Morocco's important agricultural regions. It is known for tomato production and greenhouse farming."
+  }
+]
