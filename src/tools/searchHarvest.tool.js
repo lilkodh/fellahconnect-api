@@ -1,4 +1,3 @@
-const { where, Model } = require("sequelize");
 const {Harvest , Product , Parcel , Farmer}= require("../models");
 class searchHarvestTool{
     execute = async ({product} ) =>{
@@ -28,11 +27,21 @@ productId: productfound.id
   },
 ]
 })
-return{
-     success: true,
-  product: productfound.name,
-  harvest:foundHarvests
+if(foundHarvests.length === 0){
+    return {
+    success: false,
+    message: "No harvests found for this product.",
+  };
 }
+return {
+  success: true,
+  product: productfound.name,
+  harvests: foundHarvests.map((harvest) => ({
+    id: harvest.id,
+    parcel: harvest.Parcel?.name,
+    farmer: harvest.Parcel?.Farmer?.firstName,
+  })),
+};
 
 
 
