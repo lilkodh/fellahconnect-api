@@ -236,14 +236,14 @@ Content-Type: application/json
 
 {
   "fullName": "Ahmed Benali",
-  "email": "ahmed@test.com",
+  "email": "khaliddh@gmail.com",
   "password": "Password123!",
   "role": "FARMER"
 }
 ###
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkZBUk1FUiIsImlhdCI6MTc4NDE0OTEwOCwiZXhwIjoxNzg0MjM1NTA4fQ.7n1ljhGlMEqWs8gyRVtebe1y246cxUfbvHAvbw-AV2M
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkZBUk1FUiIsImlhdCI6MTc4NDQ3NTk3MywiZXhwIjoxNzg0NTYyMzczfQ.RU36CM9HyeBXvTJxU2yQrUo8yx4hzJ3c0OvKnWDL8nY
 
 {
   "email": "ahmed@test.com",
@@ -333,8 +333,9 @@ Content-Type: application/json
 ###
 POST http://localhost:3000/api/ai/chat
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkZBUk1FUiIsImlhdCI6MTc4NDQ3NTk3MywiZXhwIjoxNzg0NTYyMzczfQ.RU36CM9HyeBXvTJxU2yQrUo8yx4hzJ3c0OvKnWDL8nY
 
 
  {
-  "message": "Create a sale offer for harvest 1 in market 1 with price 15."
+  "message": "b ?"
 }
