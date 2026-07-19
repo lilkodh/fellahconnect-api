@@ -2,15 +2,16 @@ const aiService = require("../services/ai.service");
 
 class aiController {
 
-    chat = async (req, res) => {
+     chat = async (req, res) => {
+    const { message } = req.body;
 
-        const { message } = req.body;
+    const response = await aiService.chat(
+      message,
+      req.user
+    );
 
-        const response = await aiService.chat(message);
-
-        return res.status(200).json(response);
-
-    };
+    return res.status(200).json(response);
+  };
 
 }
 

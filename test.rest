@@ -334,6 +334,7 @@ Content-Type: application/json
 POST http://localhost:3000/api/ai/chat
 Content-Type: application/json
 
-{
-  "message": "Check sale offer 1."
+
+ {
+  "message": "Create a sale offer for harvest 1 in market 1 with price 15."
 }

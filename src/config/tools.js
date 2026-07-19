@@ -1,4 +1,4 @@
-const product = require("../models/product");
+
 
 const tools = [
   {
@@ -94,7 +94,26 @@ const tools = [
       required: ["saleOfferId"],
     },
   },
-}
+},
+{
+  type: "function",
+  function: {
+    name: "searchAgricultureKnowledge",
+    description:
+      "Search agricultural knowledge, farming advice, and cultivation information.",
+    parameters: {
+      type: "object",
+      properties: {
+        query: {
+          type: "string",
+          description:
+            "The agriculture question or topic to search for.",
+        },
+      },
+      required: ["query"],
+    },
+  },
+},
 ];
 
 module.exports = tools;
