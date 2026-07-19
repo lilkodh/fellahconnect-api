@@ -15,9 +15,9 @@ class AIService {
       },
     ];
 
-    const reply = await groqService.generateResponse(messages);
+    let  reply = await groqService.generateResponse(messages);
 
-    if (reply.tool_calls) {
+    while  (reply.tool_calls) {
       const toolCall = reply.tool_calls[0];
 
       const toolName = toolCall.function.name;
@@ -25,6 +25,12 @@ class AIService {
       const toolArguments = JSON.parse(toolCall.function.arguments);
 
       const tool = toolRegistry[toolName];
+      if (!tool) {
+  return {
+    success: false,
+    message: `Unknown tool: ${toolName}`,
+  };
+}
 
       const result = await tool.execute(toolArguments);
 
@@ -40,14 +46,7 @@ class AIService {
         content: JSON.stringify(result),
       });
 
-      const finalReply = await groqService.generateResponse(messages);
-console.log(finalReply);
-console.log("Content:", finalReply.content);
-console.log("Tool calls:", finalReply.tool_calls);
-      return {
-        success: true,
-        response: finalReply.content,
-      };
+    reply = await groqService.generateResponse(messages);
     }
 
     return {
